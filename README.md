@@ -1,2 +1,3 @@
 # signal_discrimination_pipeline
- a matlab pipeline to perform ROC analyses
+A matlab pipeline to perform ROC analyses
+To get started, feel free to look up the example_roc.m script.
