@@ -2,15 +2,15 @@ clearvars
 close all
 
 n_t = 200; % number of timesteps
-n_pt = 15; % number of participants across groups
+n_s = 15; % number of signals per group
 
-slope_array = 0.02 * randn(n_pt, 1); % random distribution of slopes
+slope_array = 0.005 * randn(n_s, 1); % random distribution of slopes
 
 % let's say all group 1 signals have slope > 0 (ROC can handle non-equal group sizes)
 % let's say all group 2 signals have slope < 0 
 labels = sign(slope_array) == 1;
 
-signals = create_dummy_signal(n_pt, n_t, 1, floor(n_t/2), slope_array);
+signals = create_dummy_signal(n_s, n_t, 0.3, floor(n_t/2), slope_array);
 
 figure(1); clf;
 h(1) = subplot(1,3,1);
@@ -18,7 +18,7 @@ plot(signals( labels,:)', 'color', [1 0 0]); hold on
 plot(signals(~labels,:)', 'color', [0 0 0]);
 h(1).Title.String = 'raw signals';
 h(1).XLabel.String = 'timestep';
-h(1).YLabel.String = 'some unit (eg mV for EMG traces)';
+h(1).YLabel.String = '(signal unit)';
 
 
 % let's get the area under the true positive rate (TPR) against
